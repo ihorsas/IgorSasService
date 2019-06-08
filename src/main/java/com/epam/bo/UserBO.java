@@ -1,6 +1,6 @@
 package com.epam.bo;
 
-import com.epam.dao.NotLoggedUserException;
+import com.epam.exception.NotLoggedUserException;
 import com.epam.dao.UserDAO;
 import com.epam.model.Role;
 import com.epam.model.User;

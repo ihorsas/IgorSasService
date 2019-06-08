@@ -1,8 +1,10 @@
 package com.epam.model;
 
+import java.io.Serializable;
 import java.util.Objects;
+import java.util.StringJoiner;
 
-public class Role {
+public class Role implements Serializable {
     private String name;
 
     public Role(String name) {
@@ -11,6 +13,10 @@ public class Role {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
@@ -24,5 +30,12 @@ public class Role {
     @Override
     public int hashCode() {
         return Objects.hash(getName());
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", Role.class.getSimpleName() + "[", "]")
+                .add("name='" + name + "'")
+                .toString();
     }
 }

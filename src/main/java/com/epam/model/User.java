@@ -1,11 +1,12 @@
 package com.epam.model;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.StringJoiner;
 
-public class User {
+public class User implements Serializable {
     private static final Role ADMIN_ROLE = new Role("Administrator");
     private static final Role MODERATOR_ROLE = new Role("Moderator");
     private static final Role USER_ROLE = new Role("User");

@@ -1,5 +1,6 @@
 package com.epam.dao;
 
+import com.epam.exception.NotLoggedUserException;
 import com.epam.model.Role;
 import com.epam.model.User;
 import com.epam.utills.CSVUserManager;

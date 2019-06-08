@@ -25,7 +25,7 @@ public interface UserService {
     @Path("/role")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces("application/json; charset=UTF-8")
-    Response getUserByRole(Role role);
+    Response getUsersByRole(Role role);
 
     @POST
     @Path("/user")
@@ -39,4 +39,8 @@ public interface UserService {
     @Produces("application/json; charset=UTF-8")
     Response removeBook(User user);
 
+    @POST
+    @Path("/login")
+    @Produces("application/json; charset=UTF-8")
+    Response logIn(String username, String password);
 }

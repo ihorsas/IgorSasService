@@ -1,4 +1,4 @@
-package com.epam.dao;
+package com.epam.exception;
 
 public class NotLoggedUserException extends Exception {
 
