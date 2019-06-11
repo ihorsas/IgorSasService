@@ -35,7 +35,7 @@ public class UserBO {
         List<User> userList = userDAO.getAllUsers();
         return userList
                 .stream()
-                .filter(user -> user.getRoles().contains(role))
+                .filter(user -> user.getRole().equals(role))
                 .collect(Collectors.toList());
     }
 

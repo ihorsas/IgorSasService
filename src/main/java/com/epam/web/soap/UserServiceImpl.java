@@ -3,6 +3,7 @@ package com.epam.web.soap;
 import com.epam.bo.UserBO;
 import com.epam.exception.NotLoggedUserException;
 import com.epam.exception.ServiceException;
+import com.epam.model.LoginModel;
 import com.epam.model.Role;
 import com.epam.model.User;
 import com.epam.web.fault.FaultMessage;
@@ -28,7 +29,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public List<Role> getRoles(String name) throws ServiceException {
+    public List<Role> getRoles() throws ServiceException {
         LOGGER.info("getting all users in service");
         try {
             return userBO.getRolesForCurrentUser();
@@ -40,9 +41,9 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public List<User> getUsersByRole(Role role) throws ServiceException {
+    public List<User> getUsersByRole(String role) throws ServiceException {
         LOGGER.info("getting users by role");
-        List<User> userList = userBO.getUsersByRole(role);
+        List<User> userList = userBO.getUsersByRole(new Role(role));
         if(userList.isEmpty()){
             throw new ServiceException(String.valueOf(FaultMessage.USER_NOT_EXIST));
         }
@@ -62,7 +63,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public boolean removeBook(User user) throws ServiceException {
+    public boolean removeUser(User user) throws ServiceException {
         LOGGER.info("removing user in service");
         if (!userBO.deleteUser(user)) {
             String message = String.valueOf(FaultMessage.USER_NOT_EXIST);
@@ -74,7 +75,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public boolean logIn(String username, String password) {
-        return userBO.logIn(username, password);
+    public boolean logIn(LoginModel loginModel) {
+        return userBO.logIn(loginModel.getUsername(), loginModel.getPassword());
     }
 }

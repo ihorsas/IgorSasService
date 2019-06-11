@@ -11,6 +11,9 @@ public class Role implements Serializable {
         this.name = name;
     }
 
+    public Role() {
+    }
+
     public String getName() {
         return name;
     }
@@ -34,8 +37,6 @@ public class Role implements Serializable {
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", Role.class.getSimpleName() + "[", "]")
-                .add("name='" + name + "'")
-                .toString();
+        return name;
     }
 }

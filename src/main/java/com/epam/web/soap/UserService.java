@@ -1,6 +1,7 @@
 package com.epam.web.soap;
 
 import com.epam.exception.ServiceException;
+import com.epam.model.LoginModel;
 import com.epam.model.Role;
 import com.epam.model.User;
 
@@ -11,13 +12,13 @@ import java.util.List;
 public interface UserService {
     List<User> getAllUsers();
 
-    List<Role> getRoles(String username) throws ServiceException;
+    List<Role> getRoles() throws ServiceException;
 
-    List<User> getUsersByRole(Role role) throws ServiceException;
+    List<User> getUsersByRole(String role) throws ServiceException;
 
     boolean addUser(User user) throws ServiceException;
 
-    boolean removeBook(User user) throws ServiceException;
+    boolean removeUser(User user) throws ServiceException;
 
-    boolean logIn(String username, String password);
+    boolean logIn(LoginModel loginModel);
 }

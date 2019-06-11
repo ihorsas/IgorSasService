@@ -2,6 +2,7 @@ package com.epam.web.rest;
 
 import com.epam.bo.UserBO;
 import com.epam.exception.NotLoggedUserException;
+import com.epam.model.LoginModel;
 import com.epam.model.Role;
 import com.epam.model.User;
 import com.epam.web.fault.FaultMessage;
@@ -26,7 +27,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Response getRoles(String name) {
+    public Response getRoles() {
         LOGGER.info("getting all users in service");
         try {
             return Response.ok().entity(userBO.getRolesForCurrentUser()).build();
@@ -37,10 +38,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Response getUsersByRole(Role role) {
+    public Response getUsersByRole(String role) {
         LOGGER.info("getting users by role");
-        List<User> userList = userBO.getUsersByRole(role);
-        if(userList.isEmpty()){
+        List<User> userList = userBO.getUsersByRole(new Role(role));
+        if (userList.isEmpty()) {
             return Response.status(Response.Status.NOT_FOUND).entity(FaultMessage.USER_NOT_EXIST).build();
         }
         return Response.ok().entity(userList).build();
@@ -49,7 +50,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Response addUser(User user) {
         LOGGER.info("adding new user in system");
-        if(userBO.registerNewUser(user)){
+        if (userBO.registerNewUser(user)) {
             return Response.ok().build();
         } else {
             LOGGER.error(FaultMessage.SUCH_USER_ALREADY_EXIST);
@@ -58,18 +59,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Response removeBook(User user) {
+    public Response removeUser(User user) {
         LOGGER.info("removing user in service");
         if (!userBO.deleteUser(user)) {
             LOGGER.error(FaultMessage.USER_NOT_EXIST);
             return Response.status(Response.Status.NOT_FOUND).entity(FaultMessage.USER_NOT_EXIST).build();
-        } else {
-            return Response.ok().build();
         }
+        return Response.ok().build();
+
     }
 
     @Override
-    public Response logIn(String username, String password) {
+    public Response logIn(LoginModel loginModel) {
+        if (userBO.logIn(loginModel.getUsername(), loginModel.getPassword())) {
+            return Response.ok().build();
+        }
         return Response.status(Response.Status.SERVICE_UNAVAILABLE).entity(FaultMessage.USER_NOT_LOGGED_IN).build();
     }
 }
