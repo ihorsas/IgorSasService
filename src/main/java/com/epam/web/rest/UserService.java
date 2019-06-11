@@ -24,7 +24,6 @@ public interface UserService {
 
     @GET
     @Path("/role/{role}")
-    @Consumes("text/plain; charset=UTF=-8")
     @Produces("application/json; charset=UTF-8")
     Response getUsersByRole(@PathParam("role") String role);
 

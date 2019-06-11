@@ -6,6 +6,7 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.io.input.BOMInputStream;
+import org.apache.logging.log4j.LogManager;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CSVUserManager {
-    public static String[] HEADERS = {"UserName", "Password", "Role"};
+    private static String[] HEADERS = {"UserName", "Password", "Role"};
 
     private static InputStreamReader newReader(final InputStream inputStream) {
         return new InputStreamReader(new BOMInputStream(inputStream), StandardCharsets.UTF_8);
@@ -29,10 +30,11 @@ public class CSVUserManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        LogManager.getLogger(CSVUserManager.class).info(list);
         return list;
     }
 
-    public static void writeBooks(List<User> userList, File file) {
+    public static void writeUsers(List<User> userList, File file) {
         Writer out = null;
         CSVPrinter csvFilePrinter = null;
         CSVFormat csvFileFormat = CSVFormat.DEFAULT.withRecordSeparator("\n").withNullString("");

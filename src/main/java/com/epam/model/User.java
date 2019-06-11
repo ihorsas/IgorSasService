@@ -16,9 +16,9 @@ public class User implements Serializable {
     }
 
     private void setRoles(Role role) {
-        Role ADMIN_ROLE = new Role("Administrator");
-        Role MODERATOR_ROLE = new Role("Moderator");
-        Role USER_ROLE = new Role("User");
+        Role ADMIN_ROLE = new Role("administrator");
+        Role MODERATOR_ROLE = new Role("moderator");
+        Role USER_ROLE = new Role("user");
 
         this.role = role;
 
@@ -86,6 +86,7 @@ public class User implements Serializable {
                 .add("username='" + username + "'")
                 .add("password='" + password + "'")
                 .add("role=" + role)
+                .add("roles=" + roles)
                 .toString();
     }
 }

@@ -41,7 +41,7 @@ public class UserDAO {
         List<User> userList = CSVUserManager.readUsers(file);
         if (!userList.contains(user)) {
             userList.add(user);
-            CSVUserManager.writeBooks(userList, file);
+            CSVUserManager.writeUsers(userList, file);
             return true;
         }
         return false;
@@ -61,7 +61,7 @@ public class UserDAO {
                 User user1 = it.next();
                 if (user1.equals(user)) {
                     it.remove();
-                    CSVUserManager.writeBooks(userList, file);
+                    CSVUserManager.writeUsers(userList, file);
                     return true;
                 }
             }
@@ -73,8 +73,7 @@ public class UserDAO {
         if (Objects.isNull(user)) {
             throw new NotLoggedUserException();
         } else {
-//            return user.getRoles();
-            return Collections.singletonList(user.getRole());
+            return user.getRoles();
         }
     }
 

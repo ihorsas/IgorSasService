@@ -14,7 +14,7 @@ import javax.jws.WebService;
 import java.util.List;
 
 @WebService(endpointInterface = "com.epam.web.soap.UserService")
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
     private Logger LOGGER = LogManager.getLogger(UserServiceImpl.class);
     private UserBO userBO;
 
@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService{
     public List<User> getUsersByRole(String role) throws ServiceException {
         LOGGER.info("getting users by role");
         List<User> userList = userBO.getUsersByRole(new Role(role));
-        if(userList.isEmpty()){
+        if (userList.isEmpty()) {
             throw new ServiceException(String.valueOf(FaultMessage.USER_NOT_EXIST));
         }
         return userList;
@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public boolean addUser(User user) throws ServiceException {
         LOGGER.info("adding new user in system");
-        if(userBO.registerNewUser(user)){
+        if (userBO.registerNewUser(user)) {
             return true;
         } else {
             String message = String.valueOf(FaultMessage.SUCH_USER_ALREADY_EXIST);
