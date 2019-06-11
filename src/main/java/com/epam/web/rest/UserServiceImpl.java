@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Response getUsersByRole(String role) {
-        LOGGER.info("getting users by role");
+        LOGGER.info("getting users by role: " + role);
         List<User> userList = userBO.getUsersByRole(new Role(role));
         if (userList.isEmpty()) {
             return Response.status(Response.Status.NOT_FOUND).entity(FaultMessage.USER_NOT_EXIST).build();

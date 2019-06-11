@@ -4,7 +4,9 @@ import com.epam.exception.NotLoggedUserException;
 import com.epam.dao.UserDAO;
 import com.epam.model.Role;
 import com.epam.model.User;
+import org.apache.logging.log4j.LogManager;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,10 +35,14 @@ public class UserBO {
 
     public List<User> getUsersByRole(Role role) {
         List<User> userList = userDAO.getAllUsers();
-        return userList
-                .stream()
-                .filter(user -> user.getRole().equals(role))
-                .collect(Collectors.toList());
+        List<User> list = new ArrayList<>();
+        for (User user : userList) {
+            if (user.getRole().equals(role)) {
+                list.add(user);
+                LogManager.getLogger(UserBO.class).info(user);
+            }
+        }
+        return list;
     }
 
     public List<Role> getRolesForCurrentUser() throws NotLoggedUserException {

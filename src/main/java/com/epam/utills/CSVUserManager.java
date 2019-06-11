@@ -30,7 +30,6 @@ public class CSVUserManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        LogManager.getLogger(CSVUserManager.class).info(list);
         return list;
     }
 

@@ -12,10 +12,10 @@ public class User implements Serializable {
     public User(String username, String password, Role role) {
         this.username = username;
         this.password = password;
-        setRoles(role);
+        setRolesByRole(role);
     }
 
-    private void setRoles(Role role) {
+    private void setRolesByRole(Role role) {
         Role ADMIN_ROLE = new Role("administrator");
         Role MODERATOR_ROLE = new Role("moderator");
         Role USER_ROLE = new Role("user");
@@ -47,7 +47,7 @@ public class User implements Serializable {
     }
 
     public void setRole(Role role) {
-        setRoles(role);
+        setRolesByRole(role);
     }
 
     public String getUsername() {
