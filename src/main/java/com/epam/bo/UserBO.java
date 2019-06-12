@@ -8,7 +8,6 @@ import org.apache.logging.log4j.LogManager;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class UserBO {
     private UserDAO userDAO;
@@ -36,12 +35,12 @@ public class UserBO {
     public List<User> getUsersByRole(Role role) {
         List<User> userList = userDAO.getAllUsers();
         List<User> list = new ArrayList<>();
-        for (User user : userList) {
-            if (user.getRole().equals(role)) {
-                list.add(user);
-                LogManager.getLogger(UserBO.class).info(user);
-            }
-        }
+        userList.stream()
+                .filter(user -> user.getRole().equals(role))
+                .forEach(user -> {
+                    list.add(user);
+                    LogManager.getLogger(UserBO.class).info(user);
+                });
         return list;
     }
 

@@ -8,7 +8,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Objects;

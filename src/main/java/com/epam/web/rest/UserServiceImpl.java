@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Response getRoles() {
-        LOGGER.info("getting all users in service");
+        LOGGER.info("getting roles for current user in service");
         try {
             return Response.ok().entity(userBO.getRolesForCurrentUser()).build();
         } catch (NotLoggedUserException e) {
@@ -71,6 +71,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Response logIn(LoginModel loginModel) {
+        LOGGER.info("Logging in: " + loginModel);
         if (userBO.logIn(loginModel.getUsername(), loginModel.getPassword())) {
             return Response.ok().build();
         }

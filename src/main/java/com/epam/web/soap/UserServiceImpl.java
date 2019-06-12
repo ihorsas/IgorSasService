@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<Role> getRoles() throws ServiceException {
-        LOGGER.info("getting all users in service");
+        LOGGER.info("getting roles for current user in service");
         try {
             return userBO.getRolesForCurrentUser();
         } catch (NotLoggedUserException e) {
@@ -76,6 +76,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean logIn(LoginModel loginModel) {
+        LOGGER.info("Logging in: " + loginModel);
         return userBO.logIn(loginModel.getUsername(), loginModel.getPassword());
     }
 }
