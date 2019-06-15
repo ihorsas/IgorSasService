@@ -1,6 +1,6 @@
 package com.epam.bo;
 
-import com.epam.exception.NotLoggedUserException;
+import com.epam.exception.UserNotLoggedInException;
 import com.epam.dao.UserDAO;
 import com.epam.model.Role;
 import com.epam.model.User;
@@ -44,7 +44,7 @@ public class UserBO {
         return list;
     }
 
-    public List<Role> getRolesForCurrentUser() throws NotLoggedUserException {
+    public List<Role> getRolesForCurrentUser() throws UserNotLoggedInException {
         return userDAO.getRolesForCurrentUser();
     }
 }

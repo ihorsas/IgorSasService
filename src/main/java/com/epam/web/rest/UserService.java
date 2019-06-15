@@ -4,7 +4,6 @@ import com.epam.model.LoginModel;
 import com.epam.model.User;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;

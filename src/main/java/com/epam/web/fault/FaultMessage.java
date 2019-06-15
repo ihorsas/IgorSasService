@@ -9,7 +9,7 @@ public enum FaultMessage {
 
     private String messageExpression;
 
-    private FaultMessage(String message) {
+    FaultMessage(String message) {
         this.messageExpression = message;
     }
 

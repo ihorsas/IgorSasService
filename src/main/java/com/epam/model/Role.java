@@ -2,7 +2,6 @@ package com.epam.model;
 
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.StringJoiner;
 
 public class Role implements Serializable {
     private String name;

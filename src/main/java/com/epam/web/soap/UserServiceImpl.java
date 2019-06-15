@@ -1,8 +1,8 @@
 package com.epam.web.soap;
 
 import com.epam.bo.UserBO;
-import com.epam.exception.NotLoggedUserException;
 import com.epam.exception.ServiceException;
+import com.epam.exception.UserNotLoggedInException;
 import com.epam.model.LoginModel;
 import com.epam.model.Role;
 import com.epam.model.User;
@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
         LOGGER.info("getting roles for current user in service");
         try {
             return userBO.getRolesForCurrentUser();
-        } catch (NotLoggedUserException e) {
+        } catch (UserNotLoggedInException e) {
             String message = String.valueOf(FaultMessage.USER_HAS_NO_ACCESS);
             LOGGER.error(message);
             throw new ServiceException(message);

@@ -1,6 +1,6 @@
 package com.epam.dao;
 
-import com.epam.exception.NotLoggedUserException;
+import com.epam.exception.UserNotLoggedInException;
 import com.epam.model.Role;
 import com.epam.model.User;
 import com.epam.utills.CSVUserManager;
@@ -68,9 +68,9 @@ public class UserDAO {
         return false;
     }
 
-    public List<Role> getRolesForCurrentUser() throws NotLoggedUserException {
+    public List<Role> getRolesForCurrentUser() throws UserNotLoggedInException {
         if (Objects.isNull(user)) {
-            throw new NotLoggedUserException();
+            throw new UserNotLoggedInException();
         } else {
             return user.getRoles();
         }
