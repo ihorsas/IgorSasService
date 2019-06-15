@@ -53,13 +53,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean addUser(User user) throws ServiceException {
         LOGGER.info("adding new user in system");
-        if (userBO.registerNewUser(user)) {
-            return true;
-        } else {
+        if (!userBO.registerNewUser(user)) {
             String message = String.valueOf(FaultMessage.SUCH_USER_ALREADY_EXIST);
             LOGGER.error(message);
             throw new ServiceException(message);
         }
+        return true;
     }
 
     @Override
@@ -69,14 +68,17 @@ public class UserServiceImpl implements UserService {
             String message = String.valueOf(FaultMessage.USER_NOT_EXIST);
             LOGGER.error(message);
             throw new ServiceException(message);
-        } else {
-            return true;
         }
+        return true;
     }
 
     @Override
-    public boolean logIn(LoginModel loginModel) {
+    public boolean logIn(LoginModel loginModel) throws ServiceException {
         LOGGER.info("Logging in: " + loginModel);
-        return userBO.logIn(loginModel.getUsername(), loginModel.getPassword());
+        if (!userBO.logIn(loginModel.getUsername(), loginModel.getPassword())) {
+            String message = String.valueOf(FaultMessage.USER_NOT_EXIST);
+            throw new ServiceException(message);
+        }
+        return true;
     }
 }
