@@ -14,9 +14,9 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class UserDAO {
+    private static Logger LOGGER = LogManager.getLogger(UserDAO.class);
     private final File file;
     private User user;
-    private static Logger LOGGER = LogManager.getLogger(UserDAO.class);
 
     public UserDAO() {
         file = new File("src/main/resources/users.csv");
@@ -53,17 +53,9 @@ public class UserDAO {
     public boolean deleteUser(User user) {
         LOGGER.info("deleting user");
         List<User> userList = CSVUserManager.readUsers(file);
-        ListIterator<User> it = userList.listIterator();
-
-        if (isUserInSystem(user)) {
-            while (it.hasNext()) {
-                User user1 = it.next();
-                if (user1.equals(user)) {
-                    it.remove();
-                    CSVUserManager.writeUsers(userList, file);
-                    return true;
-                }
-            }
+        if(userList.remove(user)){
+            CSVUserManager.writeUsers(userList, file);
+            return true;
         }
         return false;
     }
@@ -74,16 +66,5 @@ public class UserDAO {
         } else {
             return user.getRoles();
         }
-    }
-
-    private boolean isUserInSystem(User user) {
-        LOGGER.info("checking user is in system");
-        List<User> userList = CSVUserManager.readUsers(file);
-        for (User user1 : userList) {
-            if (user1.equals(user)) {
-                return true;
-            }
-        }
-        return false;
     }
 }

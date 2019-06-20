@@ -1,7 +1,7 @@
 package com.epam.bo;
 
-import com.epam.exception.UserNotLoggedInException;
 import com.epam.dao.UserDAO;
+import com.epam.exception.UserNotLoggedInException;
 import com.epam.model.Role;
 import com.epam.model.User;
 import org.apache.logging.log4j.LogManager;

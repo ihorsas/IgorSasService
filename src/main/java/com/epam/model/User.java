@@ -15,6 +15,9 @@ public class User implements Serializable {
         setRolesByRole(role);
     }
 
+    public User() {
+    }
+
     private void setRolesByRole(Role role) {
         Role ADMIN_ROLE = new Role("administrator");
         Role MODERATOR_ROLE = new Role("moderator");
@@ -29,9 +32,6 @@ public class User implements Serializable {
         } else if (USER_ROLE.equals(role)) {
             roles = Collections.singletonList(USER_ROLE);
         }
-    }
-
-    public User() {
     }
 
     public List<Role> getRoles() {
