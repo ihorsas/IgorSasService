@@ -21,4 +21,6 @@ public interface UserService {
     boolean removeUser(User user) throws ServiceException;
 
     boolean logIn(LoginModel loginModel) throws ServiceException;
+
+    boolean logOut() throws ServiceException;
 }

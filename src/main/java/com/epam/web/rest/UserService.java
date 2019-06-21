@@ -42,4 +42,9 @@ public interface UserService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces("application/json; charset=UTF-8")
     Response logIn(@RequestBody LoginModel loginModel);
+
+    @GET
+    @Path("/logout")
+    @Produces("application/json; charset=UTF-8")
+    Response logOut();
 }

@@ -81,4 +81,17 @@ public class UserServiceImpl implements UserService {
         }
         return true;
     }
+
+    @Override
+    public boolean logOut() throws ServiceException {
+        LOGGER.info("logging out");
+        try {
+            return userBO.logOut();
+        } catch (UserNotLoggedInException e) {
+            String message = String.valueOf(FaultMessage.USER_NOT_LOGGED_IN);
+            LOGGER.error(message);
+            throw new ServiceException(message);
+        }
+    }
+
 }

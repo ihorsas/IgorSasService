@@ -34,6 +34,15 @@ public class UserDAO {
         return cond.get();
     }
 
+    public boolean logOut() throws UserNotLoggedInException {
+        if (Objects.isNull(user)) {
+            throw new UserNotLoggedInException();
+        } else {
+            user = null;
+            return true;
+        }
+    }
+
     public boolean registerNewUser(User user) {
         LOGGER.info("registering new User");
         List<User> userList = CSVUserManager.readUsers(file);

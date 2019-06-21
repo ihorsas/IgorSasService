@@ -77,4 +77,15 @@ public class UserServiceImpl implements UserService {
         }
         return Response.status(Response.Status.SERVICE_UNAVAILABLE).entity(FaultMessage.USER_NOT_LOGGED_IN).build();
     }
+
+    @Override
+    public Response logOut() {
+        LOGGER.info("logging out");
+        try {
+            return Response.ok().entity(userBO.logOut()).build();
+        } catch (UserNotLoggedInException e) {
+            LOGGER.error(FaultMessage.USER_NOT_LOGGED_IN);
+            return Response.status(Response.Status.FORBIDDEN).entity(FaultMessage.USER_NOT_LOGGED_IN).build();
+        }
+    }
 }

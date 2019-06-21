@@ -22,6 +22,8 @@ public class UserBO {
         return userDAO.logIn(username, password);
     }
 
+    public boolean logOut() throws UserNotLoggedInException {return userDAO.logOut();}
+
     public boolean registerNewUser(User user) {
         return userDAO.registerNewUser(user);
     }
