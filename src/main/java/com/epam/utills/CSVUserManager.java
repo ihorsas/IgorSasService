@@ -6,8 +6,8 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.io.input.BOMInputStream;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -16,7 +16,7 @@ import java.util.List;
 
 public class CSVUserManager {
     private static String[] HEADERS = {"UserName", "Password", "Role"};
-    private static Logger LOGGER = LogManager.getLogger(CSVUserManager.class);
+    private static final Logger LOGGER = LogManager.getLogger(CSVUserManager.class);
 
     private static InputStreamReader newReader(final InputStream inputStream) {
         return new InputStreamReader(new BOMInputStream(inputStream), StandardCharsets.UTF_8);

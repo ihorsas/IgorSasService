@@ -4,17 +4,16 @@ import com.epam.exception.UserNotLoggedInException;
 import com.epam.model.Role;
 import com.epam.model.User;
 import com.epam.utills.CSVUserManager;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import java.io.File;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class UserDAO {
-    private static Logger LOGGER = LogManager.getLogger(UserDAO.class);
+    private static final Logger LOGGER = LogManager.getLogger(UserDAO.class);
     private final File file;
     private User user;
 
